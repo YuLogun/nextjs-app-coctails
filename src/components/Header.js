@@ -1,10 +1,16 @@
 import React from "react";
-import styles from "../../styles/header.module.css";
+
+import { makeStyles } from "@material-ui/core/styles";
+import { Box, Typography } from "@material-ui/core";
+
+const useStyles = makeStyles((theme) => ({}));
 
 const Header = () => (
-  <div className={styles.container}>
-    <h1>Cocktails - love</h1>
-  </div>
+  <Box>
+    <Typography variant="h3" color="primary">
+      Cocktails - love
+    </Typography>
+  </Box>
 );
 
 export default Header;
