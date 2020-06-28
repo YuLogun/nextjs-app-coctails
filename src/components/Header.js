@@ -7,7 +7,7 @@ const useStyles = makeStyles((theme) => ({}));
 
 const Header = () => (
   <Box>
-    <Typography variant="h3" color="primary">
+    <Typography variant="h1" component="h2" color="primary">
       Cocktails - love
     </Typography>
   </Box>

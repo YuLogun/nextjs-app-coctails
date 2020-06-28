@@ -7,6 +7,10 @@ const useStyles = makeStyles((theme) => ({
   box: {
     backgroundColor: theme.palette.common.background,
     padding: "0 0.5em",
+    cursor: "pointer",
+    "&:hover": {
+      transform: "scale(1.1)",
+    },
   },
   title: {
     color: theme.palette.primary.main,

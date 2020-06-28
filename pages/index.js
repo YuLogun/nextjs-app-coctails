@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios";
 import Header from "../src/components/Header";
 import MyCarousel from "../src/components/Carousel";
+import SectionWithCarousel from "../src/components/SectionWithCarousel";
 
 export default function Home(props) {
   const { cocktails } = props;
@@ -9,7 +10,14 @@ export default function Home(props) {
   return (
     <div>
       <Header />
-      <MyCarousel items={cocktails.drinks.filter((it, ind) => ind < 10)} />
+      <SectionWithCarousel
+        title="Popular"
+        items={cocktails.drinks.filter((it, ind) => ind < 10)}
+      />
+      <SectionWithCarousel
+        title="Latest hits"
+        items={cocktails.drinks.filter((it, ind) => ind < 10)}
+      />
     </div>
   );
 }
