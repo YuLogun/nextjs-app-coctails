@@ -1,15 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import Header from "../src/components/Header";
-import MyCarousel from "../src/components/Carousel";
 import SectionWithCarousel from "../src/components/SectionWithCarousel";
+import CustomInput from "../src/components/CustomInput";
 
 export default function Home(props) {
   const { cocktails } = props;
+  const [inputValue, changeInputValue] = useState("");
+  const handleChange = (e) => changeInputValue(e.target.value);
+  console.log("state", inputValue);
   console.log(cocktails);
   return (
     <div>
       <Header />
+      <CustomInput
+        placeholder="try Margarita"
+        label="Looking for something special?"
+        value={inputValue}
+        handleChange={handleChange}
+        buttonTitle="Search"
+      />
       <SectionWithCarousel
         title="Popular"
         items={cocktails.drinks.filter((it, ind) => ind < 10)}

@@ -10,9 +10,9 @@ const theme = createMuiTheme({
       white: "rgba(255, 255, 255, 0.9)",
     },
     primary: {
-      light: "#b300ff",
-      main: "#b300ff",
-      dark: "#b300ff",
+      light: "#d400ff",
+      main: "#d400ff",
+      dark: "#d400ff",
       contrastText: "#fff",
     },
     secondary: {

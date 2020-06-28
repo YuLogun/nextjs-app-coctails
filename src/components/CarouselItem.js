@@ -4,7 +4,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Box, Typography } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
-  box: {
+  container: {
     backgroundColor: theme.palette.common.background,
     padding: "0 0.5em",
     cursor: "pointer",
@@ -25,12 +25,12 @@ const CarouselItem = (props) => {
   const classes = useStyles();
   return (
     <>
-      <Box className={classes.box}>
+      <div className={classes.container}>
         <img src={imageUrl} alt={imageAlt} className={classes.img} />
         <Typography variant="subtitle1" className={classes.title}>
           {title}
         </Typography>
-      </Box>
+      </div>
     </>
   );
 };
