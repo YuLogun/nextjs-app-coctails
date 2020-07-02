@@ -22,8 +22,6 @@ export default function Home(props) {
   const { cocktails } = props;
   const [inputValue, changeInputValue] = useState("");
   const handleChange = (e) => changeInputValue(e.target.value);
-  console.log("state", inputValue);
-  console.log(cocktails.drinks[0].idDrink);
   return (
     <div>
       <Header />

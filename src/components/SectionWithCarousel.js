@@ -4,7 +4,7 @@ import MyCarousel from "./Carousel";
 
 const SectionWithCarousel = (props) => {
   return (
-    <div>
+    <div style={{ marginTop: "1em" }}>
       <SectionTitle title={props.title} />
       <MyCarousel items={props.items} />
     </div>
