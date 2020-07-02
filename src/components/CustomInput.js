@@ -1,5 +1,5 @@
 import React from "react";
-import { TextField, Button } from "@material-ui/core";
+import { TextField } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const CustomInput = (props) => {
-  const { buttonTitle, value, handleChange, placeholder, label } = props;
+  const { value, handleChange, placeholder, label } = props;
   const classes = useStyles();
   return (
     <form className={classes.container}>
@@ -42,9 +42,6 @@ const CustomInput = (props) => {
         label={label}
         className={classes.root}
       />
-      <Button variant="outlined" color="primary">
-        {buttonTitle}
-      </Button>
     </form>
   );
 };
