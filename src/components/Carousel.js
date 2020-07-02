@@ -29,7 +29,7 @@ const MyCarousel = ({ items }) => {
       ssr
       slidesToSlide={1}
       draggable={false}
-      //partialVisbile
+      partialVisible
       itemClass="image-item"
       removeArrowOnDeviceType={["mobile"]}
     >

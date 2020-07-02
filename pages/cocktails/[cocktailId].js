@@ -4,13 +4,17 @@ import { useRouter } from "next/router";
 import axios from "axios";
 
 import { makeStyles } from "@material-ui/core/styles";
-import { Typography } from "@material-ui/core";
+import { Typography, Box } from "@material-ui/core";
 
 import CocktailItem from "../../src/components/CocktailItem/CocktailItem";
 import Header from "../../src/components/Header";
 
 const useStyles = makeStyles((theme) => ({
-  container: {
+  greeting: {
+    marginTop: "1.75em",
+    paddingLeft: "0.5em",
+  },
+  cocktailItemContainer: {
     display: "flex",
     flexDirection: "column",
   },
@@ -23,13 +27,13 @@ const CocktailPage = (props) => {
   console.log("state", cocktailState);
 
   return (
-    <>
+    <Box>
       <Header />
-      <Typography variant="h2" component="h1">
+      <Typography variant="h2" component="h1" className={classes.greeting}>
         Hi there, {router.query.cocktailId} lover! Look what we have
       </Typography>
 
-      <div className={classes.container}>
+      <div className={classes.cocktailItemContainer}>
         {cocktailState.map((cocktail) => {
           const ingredients = Object.keys(cocktail)
             .filter((it) => it.indexOf("strIngredient") !== -1)
@@ -52,7 +56,7 @@ const CocktailPage = (props) => {
           );
         })}
       </div>
-    </>
+    </Box>
   );
 };
 

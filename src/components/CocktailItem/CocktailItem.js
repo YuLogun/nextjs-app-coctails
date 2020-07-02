@@ -28,12 +28,12 @@ const CocktailItem = (props) => {
           <Box className={classes.ingredientsContainer}>
             <div style={{ borderTop: "0.5px solid #d400ff" }}>
               {ingredients.map((it) => (
-                <p>{it}</p>
+                <p key={`key-${it}`}>{it}</p>
               ))}
             </div>
             <div style={{ borderTop: "0.5px solid #d400ff" }}>
               {measures.map((it) => (
-                <p>{it}</p>
+                <p key={`key-${it}-${Math.random()}`}>{it}</p>
               ))}
             </div>
           </Box>
