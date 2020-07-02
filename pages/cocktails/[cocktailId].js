@@ -4,10 +4,10 @@ import { useRouter } from "next/router";
 import axios from "axios";
 
 import { makeStyles } from "@material-ui/core/styles";
-import { Button } from "@material-ui/core";
+import { Typography } from "@material-ui/core";
 
-import MyLink from "../../src/components/Link";
-import CocktailItem from "../../src/components/CocktailItem";
+import CocktailItem from "../../src/components/CocktailItem/CocktailItem";
+import Header from "../../src/components/Header";
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -20,28 +20,37 @@ const CocktailPage = (props) => {
   const classes = useStyles();
   const router = useRouter();
   const [cocktailState, changeCocktail] = useState(props.cocktail.drinks);
-  console.log("props", props.cocktail);
   console.log("state", cocktailState);
+
   return (
     <>
-      <h1>hello {router.query.cocktailId}</h1>
-      <Button
-        variant="contained"
-        color="primary"
-        component={MyLink}
-        href="/"
-        naked
-      >
-        GO HOME
-      </Button>
+      <Header />
+      <Typography variant="h2" component="h1">
+        Hi there, {router.query.cocktailId} lover! Look what we have
+      </Typography>
+
       <div className={classes.container}>
-        {cocktailState.map((cocktail) => (
-          <CocktailItem
-            key={cocktail.idDrink}
-            title={cocktail.strDrink}
-            imgUrl={cocktail.strDrinkThumb}
-          />
-        ))}
+        {cocktailState.map((cocktail) => {
+          const ingredients = Object.keys(cocktail)
+            .filter((it) => it.indexOf("strIngredient") !== -1)
+            .map((it) => cocktail[it])
+            .filter((it) => it !== null);
+          const measures = Object.keys(cocktail)
+            .filter((it) => it.indexOf("strMeas") !== -1)
+            .map((it) => cocktail[it])
+            .filter((it) => it !== null);
+          return (
+            <CocktailItem
+              key={cocktail.idDrink}
+              title={cocktail.strDrink}
+              imgUrl={cocktail.strDrinkThumb}
+              instructions={cocktail.strInstructions}
+              alcoholic={cocktail.strAlcoholic}
+              ingredients={ingredients}
+              measures={measures}
+            />
+          );
+        })}
       </div>
     </>
   );

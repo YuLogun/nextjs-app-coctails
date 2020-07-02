@@ -40,7 +40,7 @@ export default function Home(props) {
         passHref
       >
         <Button
-          classname={classes.button}
+          className={classes.button}
           component={MyLink}
           variant="outlined"
           color="primary"
