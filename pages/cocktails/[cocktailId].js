@@ -4,10 +4,12 @@ import { useRouter } from "next/router";
 import axios from "axios";
 
 import { makeStyles } from "@material-ui/core/styles";
-import { Typography, Box } from "@material-ui/core";
+import { Typography, Box, Button } from "@material-ui/core";
 
 import CocktailItem from "../../src/components/CocktailItem/CocktailItem";
 import Header from "../../src/components/Header";
+
+import MyLink from "../../src/components/Link";
 
 const useStyles = makeStyles((theme) => ({
   greeting: {
@@ -18,14 +20,41 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
   },
+  queryColor: {
+    color: theme.palette.primary.main,
+  },
+  err: {
+    fontStyle: "italic",
+  },
 }));
 
 const CocktailPage = (props) => {
   const classes = useStyles();
   const router = useRouter();
+  console.log("router", router);
   const [cocktailState, changeCocktail] = useState(props.cocktail.drinks);
   console.log("state", cocktailState);
-
+  if (props.cocktail.drinks === null) {
+    return (
+      <>
+        <h1>
+          You seem to have very... singular tastes.
+          <br />
+          We don't serve{" "}
+          <span className={`${classes.queryColor} ${classes.err}`}>
+            {router.query.cocktailId}
+          </span>{" "}
+          here.
+        </h1>
+        <span>
+          We suggest you{" "}
+          <Button component={MyLink} href="/" naked color="primary">
+            go home
+          </Button>
+        </span>
+      </>
+    );
+  }
   return (
     <Box>
       <Header />

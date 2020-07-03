@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Header from "../src/components/Header";
 import SectionWithCarousel from "../src/components/SectionWithCarousel";
 import CustomInput from "../src/components/CustomInput";
 
 import Link from "next/link";
+import Router from "next/router";
 
 import { Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
@@ -22,6 +23,16 @@ export default function Home(props) {
   const { cocktails } = props;
   const [inputValue, changeInputValue] = useState("");
   const handleChange = (e) => changeInputValue(e.target.value);
+
+  useEffect(() => {
+    const handleError = (err, url) => {
+      if (err.cancelled) {
+        console.log(`Route to ${url} was cancelled!`);
+      }
+    };
+    Router.events.on("routeChangeError", handleError);
+    return () => Router.events.off("routeChangeError", handleError);
+  }, []);
   return (
     <div>
       <Header />
