@@ -22,8 +22,6 @@ const useStyles = makeStyles((theme) => ({
   },
   queryColor: {
     color: theme.palette.primary.main,
-  },
-  err: {
     fontStyle: "italic",
   },
 }));
@@ -41,7 +39,7 @@ const CocktailPage = (props) => {
           You seem to have very... singular tastes.
           <br />
           We don't serve{" "}
-          <span className={`${classes.queryColor} ${classes.err}`}>
+          <span className={classes.queryColor}>
             {router.query.cocktailId}
           </span>{" "}
           here.
@@ -59,7 +57,9 @@ const CocktailPage = (props) => {
     <Box>
       <Header />
       <Typography variant="h2" component="h1" className={classes.greeting}>
-        Hi there, {router.query.cocktailId} lover! Look what we have
+        Hi there,{" "}
+        <span className={classes.queryColor}>{router.query.cocktailId}</span>{" "}
+        lover! Look what we have
       </Typography>
 
       <div className={classes.cocktailItemContainer}>
