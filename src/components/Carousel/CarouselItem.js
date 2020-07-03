@@ -3,6 +3,8 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Box, Typography } from "@material-ui/core";
 
+import MyLink from "../Link";
+
 const useStyles = makeStyles((theme) => ({
   container: {
     backgroundColor: theme.palette.common.background,
@@ -11,6 +13,9 @@ const useStyles = makeStyles((theme) => ({
     "&:hover": {
       transform: "scale(1.1)",
     },
+  },
+  link: {
+    textDecoration: "none",
   },
   title: {
     color: theme.palette.primary.main,
@@ -24,14 +29,20 @@ const CarouselItem = (props) => {
   const { title, imageUrl, imageAlt } = props;
   const classes = useStyles();
   return (
-    <>
-      <div className={classes.container}>
+    <Box className={classes.container}>
+      <Box
+        className={classes.link}
+        component={MyLink}
+        naked
+        href="/cocktails/[cocktailId]"
+        as={`cocktails/${title.toLowerCase()}`}
+      >
         <img src={imageUrl} alt={imageAlt} className={classes.img} />
         <Typography variant="subtitle1" className={classes.title}>
           {title}
         </Typography>
-      </div>
-    </>
+      </Box>
+    </Box>
   );
 };
 

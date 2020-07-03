@@ -36,6 +36,7 @@ const MyCarousel = ({ items }) => {
       {items.map((it) => {
         return (
           <CarouselItem
+            style={{ pading: "0.75em" }}
             key={it.idDrink}
             imageUrl={it.strDrinkThumb}
             imageAlt={it.strDrink}
