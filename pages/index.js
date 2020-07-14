@@ -2,16 +2,15 @@ import { useState } from "react";
 import axios from "axios";
 import MobileDetect from "mobile-detect";
 
+import Head from "next/head";
+
 import Header from "../src/components/Header";
 import SectionWithCarousel from "../src/components/Carousel/SectionWithCarousel";
 import CustomInput from "../src/components/CustomInput";
-
-import Link from "next/link";
+import MyLink from "../src/components/Link";
 
 import { Button, Box } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-
-import MyLink from "../src/components/Link";
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -24,40 +23,43 @@ const Home = (props) => {
   const { cocktailsFirst, cocktailsLast, deviceType } = props;
   const [inputValue, changeInputValue] = useState("");
   const handleChange = (e) => changeInputValue(e.target.value);
-  //let search = inputValue;
-  console.log(deviceType);
   return (
-    <Box>
-      <Header />
-      <CustomInput
-        placeholder="try Margarita"
-        label="Looking for sth special?"
-        value={inputValue}
-        handleChange={handleChange}
-        buttonTitle="Search"
-      />
-      <Button
-        className={classes.button}
-        component={MyLink}
-        naked
-        href="/cocktails/[cocktailId]"
-        as={`/cocktails/${inputValue.toLowerCase()}`}
-        variant="outlined"
-        color="primary"
-      >
-        go cocktails
-      </Button>
-      <SectionWithCarousel
-        title="Popular"
-        items={cocktailsFirst.drinks.filter((it, ind) => ind < 10)}
-        deviceType={deviceType}
-      />
-      <SectionWithCarousel
-        title="Latest hits"
-        items={cocktailsLast.drinks.filter((it, ind) => ind < 10)}
-        deviceType={deviceType}
-      />
-    </Box>
+    <>
+      <Head>
+        <title>Cocktails Love</title>
+      </Head>
+      <Box>
+        <Header />
+        <CustomInput
+          placeholder="try Margarita"
+          label="Looking for sth special?"
+          value={inputValue}
+          handleChange={handleChange}
+          buttonTitle="Search"
+        />
+        <Button
+          className={classes.button}
+          component={MyLink}
+          naked
+          href="/cocktails/[cocktailId]"
+          as={`/cocktails/${inputValue.toLowerCase()}`}
+          variant="outlined"
+          color="primary"
+        >
+          go cocktails
+        </Button>
+        <SectionWithCarousel
+          title="Popular"
+          items={cocktailsFirst.drinks.filter((it, ind) => ind < 10)}
+          deviceType={deviceType}
+        />
+        <SectionWithCarousel
+          title="Latest hits"
+          items={cocktailsLast.drinks.filter((it, ind) => ind < 10)}
+          deviceType={deviceType}
+        />
+      </Box>
+    </>
   );
 };
 
@@ -89,13 +91,3 @@ export async function getStaticProps({ req }) {
     },
   };
 }
-
-/* import Head from 'next/head'
-
-export default function Home() {
-  return (
-    <div className="container">
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>*/

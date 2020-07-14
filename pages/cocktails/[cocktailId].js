@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
 
+import Head from "next/head";
+
 import axios from "axios";
 
 import { makeStyles } from "@material-ui/core/styles";
@@ -8,7 +10,6 @@ import { Typography, Box, Button } from "@material-ui/core";
 
 import CocktailItem from "../../src/components/CocktailItem/CocktailItem";
 import Header from "../../src/components/Header";
-
 import MyLink from "../../src/components/Link";
 
 const useStyles = makeStyles((theme) => ({
@@ -35,6 +36,11 @@ const CocktailPage = (props) => {
   if (props.cocktail.drinks === null) {
     return (
       <>
+        <Head>
+          <title>
+            {router.query.cocktailId.toUpperCase()} | Cocktails Love
+          </title>
+        </Head>
         <h1>
           You seem to have very... singular tastes.
           <br />
@@ -54,38 +60,43 @@ const CocktailPage = (props) => {
     );
   }
   return (
-    <Box>
-      <Header />
-      <Typography variant="h2" component="h1" className={classes.greeting}>
-        Hi there,{" "}
-        <span className={classes.queryColor}>{router.query.cocktailId}</span>{" "}
-        lover! Look what we have
-      </Typography>
+    <>
+      <Head>
+        <title>{router.query.cocktailId.toUpperCase()} | Cocktails Love</title>
+      </Head>
+      <Box>
+        <Header />
+        <Typography variant="h2" component="h1" className={classes.greeting}>
+          Hi there,{" "}
+          <span className={classes.queryColor}>{router.query.cocktailId}</span>{" "}
+          lover! Look what we have
+        </Typography>
 
-      <div className={classes.cocktailItemContainer}>
-        {cocktailState.map((cocktail) => {
-          const ingredients = Object.keys(cocktail)
-            .filter((it) => it.indexOf("strIngredient") !== -1)
-            .map((it) => cocktail[it])
-            .filter((it) => it !== null);
-          const measures = Object.keys(cocktail)
-            .filter((it) => it.indexOf("strMeas") !== -1)
-            .map((it) => cocktail[it])
-            .filter((it) => it !== null);
-          return (
-            <CocktailItem
-              key={cocktail.idDrink}
-              title={cocktail.strDrink}
-              imgUrl={cocktail.strDrinkThumb}
-              instructions={cocktail.strInstructions}
-              alcoholic={cocktail.strAlcoholic}
-              ingredients={ingredients}
-              measures={measures}
-            />
-          );
-        })}
-      </div>
-    </Box>
+        <div className={classes.cocktailItemContainer}>
+          {cocktailState.map((cocktail) => {
+            const ingredients = Object.keys(cocktail)
+              .filter((it) => it.indexOf("strIngredient") !== -1)
+              .map((it) => cocktail[it])
+              .filter((it) => it !== null);
+            const measures = Object.keys(cocktail)
+              .filter((it) => it.indexOf("strMeas") !== -1)
+              .map((it) => cocktail[it])
+              .filter((it) => it !== null);
+            return (
+              <CocktailItem
+                key={cocktail.idDrink}
+                title={cocktail.strDrink}
+                imgUrl={cocktail.strDrinkThumb}
+                instructions={cocktail.strInstructions}
+                alcoholic={cocktail.strAlcoholic}
+                ingredients={ingredients}
+                measures={measures}
+              />
+            );
+          })}
+        </div>
+      </Box>
+    </>
   );
 };
 

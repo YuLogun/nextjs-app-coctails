@@ -20,10 +20,17 @@ export default function MyApp(props) {
   return (
     <React.Fragment>
       <Head>
-        <title>Cocktails Love</title>
         <meta
           name="viewport"
           content="minimum-scale=1, initial-scale=1, width=device-width"
+        />
+        <meta
+          name="keywords"
+          content="cocktails, next.js, materialUI, yuliya, logunova"
+        />
+        <meta
+          name="description"
+          content="Cocktails Love is the app for all cocktail lovers. It is built with Next.js and MaterialUi by Yuliya Logunova"
         />
       </Head>
       <ThemeProvider theme={theme}>
