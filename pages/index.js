@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import axios from "axios";
 import MobileDetect from "mobile-detect";
 
@@ -24,7 +24,7 @@ const Home = (props) => {
   const { cocktailsFirst, cocktailsLast, deviceType } = props;
   const [inputValue, changeInputValue] = useState("");
   const handleChange = (e) => changeInputValue(e.target.value);
-  let search = inputValue;
+  //let search = inputValue;
   console.log(deviceType);
   return (
     <Box>
@@ -32,7 +32,7 @@ const Home = (props) => {
       <CustomInput
         placeholder="try Margarita"
         label="Looking for sth special?"
-        value={search}
+        value={inputValue}
         handleChange={handleChange}
         buttonTitle="Search"
       />
@@ -41,7 +41,7 @@ const Home = (props) => {
         component={MyLink}
         naked
         href="/cocktails/[cocktailId]"
-        as={`cocktails/${search.toLowerCase()}`}
+        as={`/cocktails/${inputValue.toLowerCase()}`}
         variant="outlined"
         color="primary"
       >

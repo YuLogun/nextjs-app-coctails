@@ -1,4 +1,3 @@
-import React from "react";
 import Carousel from "react-multi-carousel";
 import CarouselItem from "./CarouselItem";
 
