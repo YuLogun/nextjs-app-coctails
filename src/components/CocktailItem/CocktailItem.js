@@ -1,5 +1,3 @@
-import React from "react";
-
 import { Paper, Typography, Box } from "@material-ui/core";
 import { useStyles } from "./CocktailItem.styles";
 
