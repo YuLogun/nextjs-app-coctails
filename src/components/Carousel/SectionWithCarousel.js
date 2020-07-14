@@ -6,7 +6,7 @@ const SectionWithCarousel = (props) => {
   return (
     <div style={{ marginTop: "1em" }}>
       <SectionTitle title={props.title} />
-      <MyCarousel items={props.items} />
+      <MyCarousel items={props.items} deviceType={props.deviceType} />
     </div>
   );
 };

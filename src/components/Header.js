@@ -5,6 +5,8 @@ import Link from "next/link";
 import { makeStyles } from "@material-ui/core/styles";
 import { Typography, Box } from "@material-ui/core";
 
+import MyLink from "../components/Link";
+
 const useStyles = makeStyles((theme) => ({
   container: {
     padding: "1.5em 0",
@@ -22,7 +24,13 @@ const Header = () => {
   const classes = useStyles();
   return (
     <Box className={classes.container}>
-      <Link href="/" passHref>
+      <Box
+        component={MyLink}
+        naked
+        href="/"
+        passHref
+        style={{ textDecoration: "none" }}
+      >
         <Typography
           variant="h1"
           component="h2"
@@ -31,7 +39,7 @@ const Header = () => {
         >
           Cocktails - love
         </Typography>
-      </Link>
+      </Box>
     </Box>
   );
 };

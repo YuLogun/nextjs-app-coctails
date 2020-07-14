@@ -1,7 +1,6 @@
 import React from "react";
 import Carousel from "react-multi-carousel";
 import CarouselItem from "./CarouselItem";
-//import "react-multi-carousel/lib/styles.css";
 
 const responsive = {
   desktop: {
@@ -12,18 +11,19 @@ const responsive = {
   tablet: {
     breakpoint: { max: 1024, min: 464 },
     items: 5,
-    partialVisibilityGutter: 5,
+    partialVisibilityGutter: 7,
   },
   mobile: {
     breakpoint: { max: 464, min: 0 },
     items: 3,
-    partialVisibilityGutter: 10,
+    partialVisibilityGutter: 5,
   },
 };
 
-const MyCarousel = ({ items }) => {
+const MyCarousel = ({ items, deviceType }) => {
   return (
     <Carousel
+      deviceType={deviceType}
       responsive={responsive}
       infinite
       ssr
@@ -31,7 +31,7 @@ const MyCarousel = ({ items }) => {
       draggable={false}
       partialVisible
       itemClass="image-item"
-      removeArrowOnDeviceType={["mobile"]}
+      removeArrowOnDeviceType={["desktop", "tablet", "mobile"]}
     >
       {items.map((it) => {
         return (
