@@ -28,10 +28,9 @@ const MyCarousel = ({ items, deviceType }) => {
       infinite
       ssr
       slidesToSlide={1}
-      draggable={false}
       partialVisible
       itemClass="image-item"
-      removeArrowOnDeviceType={["desktop", "tablet", "mobile"]}
+      removeArrowOnDeviceType={["tablet", "mobile"]}
     >
       {items.map((it) => {
         return (

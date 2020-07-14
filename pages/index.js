@@ -24,6 +24,7 @@ const Home = (props) => {
   const { cocktailsFirst, cocktailsLast, deviceType } = props;
   const [inputValue, changeInputValue] = useState("");
   const handleChange = (e) => changeInputValue(e.target.value);
+  let search = inputValue;
   console.log(deviceType);
   return (
     <Box>
@@ -31,24 +32,21 @@ const Home = (props) => {
       <CustomInput
         placeholder="try Margarita"
         label="Looking for sth special?"
-        value={inputValue}
+        value={search}
         handleChange={handleChange}
         buttonTitle="Search"
       />
-      <Link
+      <Button
+        className={classes.button}
+        component={MyLink}
+        naked
         href="/cocktails/[cocktailId]"
-        as={`/cocktails/${inputValue.toLowerCase()}`}
-        passHref
+        as={`cocktails/${search.toLowerCase()}`}
+        variant="outlined"
+        color="primary"
       >
-        <Button
-          className={classes.button}
-          component={MyLink}
-          variant="outlined"
-          color="primary"
-        >
-          go cocktails
-        </Button>
-      </Link>
+        go cocktails
+      </Button>
       <SectionWithCarousel
         title="Popular"
         items={cocktailsFirst.drinks.filter((it, ind) => ind < 10)}
